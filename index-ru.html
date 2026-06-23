@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Илья Солод — Сайты для бизнеса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f7f7f5;
+    --text: #1a1a1a;
+    --text-2: #6b6b6b;
+    --text-3: #aaaaaa;
+    --border: rgba(0,0,0,0.1);
+    --border-2: rgba(0,0,0,0.2);
+    --info-bg: #eef4ff;
+    --info-text: #2563eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141414;
+      --bg-2: #1e1e1e;
+      --text: #f0f0ee;
+      --text-2: #999990;
+      --text-3: #555550;
+      --border: rgba(255,255,255,0.1);
+      --border-2: rgba(255,255,255,0.2);
+      --info-bg: #1a2540;
+      --info-text: #6ba3f5;
+    }
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  nav { border-bottom: 0.5px solid var(--border); padding: 1rem 0; }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-name { font-size: 15px; font-weight: 500; color: var(--text); text-decoration: none; }
+  .nav-cta { font-size: 13px; color: var(--info-text); text-decoration: none; border: 0.5px solid var(--border-2); padding: 6px 14px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--bg-2); }
+
+  .hero { padding: 4rem 0 3rem; border-bottom: 0.5px solid var(--border); }
+  .hero-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 1rem; }
+  .hero h1 { font-size: clamp(24px, 5vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.5px; color: var(--text); margin-bottom: 1rem; }
+  .hero h1 span { color: var(--text-2); font-weight: 400; }
+  .hero-sub { font-size: 16px; color: var(--text-2); max-width: 520px; margin-bottom: 1.5rem; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--info-bg); color: var(--info-text); padding: 5px 12px; border-radius: 20px; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; margin: 2.5rem 0; }
+  .stat { background: var(--bg); padding: 1.25rem 1rem; text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 600; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+
+  section { padding: 2.5rem 0; border-bottom: 0.5px solid var(--border); }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 1.5rem; }
+
+  .projects { display: grid; gap: 12px; }
+  .project-card { display: block; text-decoration: none; border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; background: var(--bg); transition: border-color 0.15s, background 0.15s; }
+  .project-card:hover { border-color: var(--border-2); background: var(--bg-2); }
+  .project-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+  .project-industry { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-3); }
+  .project-arrow { font-size: 16px; color: var(--text-3); }
+  .project-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .project-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+  .process { display: flex; flex-direction: column; gap: 1.25rem; }
+  .process-step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num { min-width: 28px; height: 28px; border-radius: 50%; background: var(--bg-2); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--text-2); flex-shrink: 0; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .step-desc { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+
+  .cta-section { padding: 3rem 0; }
+  .cta-section h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .cta-section p { font-size: 15px; color: var(--text-2); margin-bottom: 1.5rem; }
+  .email-row { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--text-2); flex-wrap: wrap; }
+  .email-addr { color: var(--text); font-weight: 500; }
+  .copy-btn { font-size: 12px; padding: 5px 12px; border: 0.5px solid var(--border-2); border-radius: 6px; background: transparent; color: var(--text-2); cursor: pointer; transition: background 0.1s; }
+  .copy-btn:hover { background: var(--bg-2); }
+
+  footer { padding: 1.5rem 0; font-size: 12px; color: var(--text-3); border-top: 0.5px solid var(--border); }
+  footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr; }
+    .hero { padding: 2.5rem 0 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="nav-name">Илья Солод</a>
+    <a href="mailto:YOUR@EMAIL.COM" class="nav-cta">Написать</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <p class="hero-eyebrow">Веб-разработчик · Удалённо · СНГ и США</p>
+    <h1>Сайты для малого бизнеса, которые <span>приносят клиентов</span></h1>
+    <p class="hero-sub">Делаю чистые, быстрые, мобильные сайты для сервисного бизнеса — HVAC, клининг, бьюти, фитнес и другие. Смотришь до оплаты.</p>
+    <span class="badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6.5L7.5 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Срок — около 1 недели
+    </span>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Сайтов сделано</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Ниши</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Риск при старте</div>
+    </div>
+  </div>
+
+  <section>
+    <p class="section-label">Проекты</p>
+    <div class="projects">
+
+      <a class="project-card" href="https://24252647ilya.github.io/hvacokc/" target="_blank" rel="noopener">
+        <div class="project-top">
+          <p class="project-industry">HVAC / Климат</p>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-name">Aether Climate — Оклахома-Сити</p>
+        <p class="project-desc">Сайт для HVAC-подрядчика. Мобильный, быстрый, заточен под конверсию звонков с ночного поиска.</p>
+      </a>
+
+      <a class="project-card" href="https://24252647ilya.github.io/lumen-clean/" target="_blank" rel="noopener">
+        <div class="project-top">
+          <p class="project-industry">Клининг</p>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-name">Lumen Clean — Лос-Анджелес</p>
+        <p class="project-desc">Клининговый сервис. Современный дизайн, чёткие тарифы, сильный CTA на бронирование.</p>
+      </a>
+
+      <a class="project-card" href="https://24252647ilya.github.io/Pawfect-Grooming/" target="_blank" rel="noopener">
+        <div class="project-top">
+          <p class="project-industry">Груминг</p>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-name">Pawfect Grooming — Остин, Техас</p>
+        <p class="project-desc">Студия груминга. Тёплый бренд, меню услуг, упор на запись онлайн.</p>
+      </a>
+
+      <a class="project-card" href="https://24252647ilya.github.io/ironblock/" target="_blank" rel="noopener">
+        <div class="project-top">
+          <p class="project-industry">Авторемонт</p>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-name">Ironblock Auto Repair</p>
+        <p class="project-desc">Лендинг для автосервиса. Сильная визуальная иерархия, CTA на запись, мобильная адаптация.</p>
+      </a>
+
+      <a class="project-card" href="https://24252647ilya.github.io/TURAN-INNOVATIONS2/" target="_blank" rel="noopener">
+        <div class="project-top">
+          <p class="project-industry">Корпоратив / Мероприятия</p>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-name">Turan Innovations</p>
+        <p class="project-desc">Лендинг для конкурса предпринимательских проектов. Чистый корпоративный дизайн, многосекционная структура, сильная визуальная идентичность.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Как это работает</p>
+    <div class="process">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <p class="step-title">Рассказываешь о своём бизнесе</p>
+          <p class="step-desc">Услуги, город, контакты — этого достаточно для старта.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <p class="step-title">Я делаю макет главной страницы</p>
+          <p class="step-desc">Видишь полный дизайн до того, как платишь что-либо.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <p class="step-title">Сайт живёт примерно через неделю</p>
+          <p class="step-desc">Полный сайт, адаптив, со своим доменом.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <h2>Нужен сайт?</h2>
+    <p>Напиши — без обязательств и давления. Покажу что могу сделать под твой бизнес.</p>
+    <div class="email-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1 5.5L8 9.5L15 5.5" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span class="email-addr" id="email">YOUR@EMAIL.COM</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('email').textContent); this.textContent='Скопировано!'; setTimeout(()=>this.textContent='Копировать',1500)">Копировать</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span>Илья Солод · Веб-разработчик</span>
+    <span>Казахстан · Удалённая работа</span>
+  </div>
+</footer>
+
+</body>
+</html>
